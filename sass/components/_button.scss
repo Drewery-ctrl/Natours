@@ -1,0 +1,64 @@
+@import "../abstracts/variables";
+
+
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.6rem;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+  }
+
+  /*translate in relation to initial btn state*/
+  /*on hover btn appears to rise up*/
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, .2); /* black shadow 20% opacity*/
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; /* makes pseudo el ::after fade out */
+    }
+  }
+
+  /* when btn is clicked it goes down*/
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /*Treated like the child of the btn */
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%; /*100% of btn height */
+    width: 100%; /*100% of btn width */
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+
+  &--animated {
+    animation: moveUp .5s ease-out .75s;
+    animation-fill-mode: backwards; /*applies animation start state first*/
+  }
+
+}
+
